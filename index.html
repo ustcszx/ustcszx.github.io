@@ -222,9 +222,37 @@
     @media (max-width: 1050px) { .explore-grid { grid-template-columns: minmax(0, 1fr); } .lab-panel { padding: 28px; } .sphere-stage { max-width: 620px; margin-inline: auto; } .topic-map { max-width: 600px; margin-inline: auto; } .map-results-scroll { max-height: 25rem; } }
     @media (max-width: 720px) { .explore-section { padding-block: 41px 46px; } .explore-heading { flex-direction: column; align-items: start; gap: 16px; } .lab-panel { padding: 18px; } .sphere-toolbar { align-items: start; } .bloch-readouts { gap: 10px; } .bloch-readouts output { font-size: 1.1rem; } .lab-panel .topic-node { margin-inline: 5px; } .topic-node > span:first-child { font-size: .9375rem; } .density-matrix { font-size: .8125rem; gap: 8px; padding-inline: 8px; } }
     @media (max-width: 380px) { .lab-panel { padding: 14px; } .gate-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } .topic-node small { font-size: .75rem; } .map-results-heading { align-items: start; } .bloch-readouts output { font-size: 1rem; } }
+
+    /* AI-generated artwork; interaction is decorative and never captures input. */
+    body { background-image: none; isolation: isolate; }
+    .quantum-background { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; background: #050a12; contain: strict; }
+    .quantum-art { position: absolute; inset: -32px; }
+    .quantum-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: .84; }
+    .quantum-veil { position: absolute; inset: 0; background: linear-gradient(90deg, #080b1259, #080b12a8 27%, #080b12b3 67%, #080b1266), linear-gradient(0deg, #080b1240, transparent 60%); }
+    .quantum-light { position: absolute; left: 50%; top: 50%; width: min(720px, 100vw); aspect-ratio: 1; margin-left: max(-360px, -50vw); margin-top: max(-360px, -50vw); background: radial-gradient(circle, #64f5e813, #a36cfe08 35%, transparent 68%); opacity: 0; }
+    .quantum-background[data-active="true"] .quantum-art { will-change: transform; }
+    .quantum-background[data-active="true"] .quantum-light { opacity: 1; will-change: transform; }
+    .background-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 18px; margin-top: 24px; }
+    .background-caption { color: var(--muted); font: 400 .6875rem/1.6 var(--mono); }
+    .background-toggle { display: inline-flex; align-items: center; gap: .6rem; min-height: 36px; padding: .4rem .65rem; color: var(--muted); background: #0d1420e6; border: 1px solid var(--line); font: 400 .6875rem/1.5 var(--mono); cursor: pointer; }
+    .background-toggle:hover { border-color: var(--blue); color: var(--ink); }
+    .background-toggle:focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
+    .background-toggle[aria-pressed="true"] .motion-state { color: var(--blue); }
+    .background-toggle:disabled { cursor: default; }
+    @media (max-aspect-ratio: 1/1) { .quantum-art img { object-position: 72% center; opacity: .65; } }
+    @media (prefers-reduced-motion: reduce), (hover: none) {
+      .quantum-art { transform: none !important; }
+      .quantum-light { display: none; }
+    }
+
   </style>
 </head>
 <body>
+  <div class="quantum-background" id="quantum-background" aria-hidden="true">
+    <div class="quantum-art"><img src="quantum-background.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low"></div>
+    <div class="quantum-veil"></div>
+    <div class="quantum-light"></div>
+  </div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
     <a class="wordmark" href="#top" aria-label="Zhongxia Shang, home">ZS<span aria-hidden="true">.</span></a>
@@ -242,6 +270,10 @@
           <a class="primary-link" href="https://scholar.google.com/citations?user=eDQgtCQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
           <a href="https://www.linkedin.com/in/zhongxia-shang-9236a42ba/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
           <a href="https://x.com/zhongxiaquantum" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="background-tools">
+          <span class="background-caption">AI-generated quantum field</span>
+          <button class="background-toggle" id="background-toggle" type="button" aria-label="Background motion" aria-pressed="false" hidden>Background motion <span class="motion-state" aria-hidden="true">Off</span></button>
         </div>
       </div>
       <figure class="portrait">
@@ -727,6 +759,79 @@ const BlochMath = Object.freeze({
   selectTopic('dissipation');
 
 })();
+  </script>
+  <script>
+(() => {
+  'use strict';
+  const scene = document.getElementById('quantum-background');
+  const art = scene.querySelector('.quantum-art');
+  const light = scene.querySelector('.quantum-light');
+  const toggle = document.getElementById('background-toggle');
+  const status = toggle.querySelector('.motion-state');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mouse = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const storageKey = 'quantum-background-motion';
+  let wanted = true;
+  try { wanted = localStorage.getItem(storageKey) !== 'off'; } catch (_) { /* Storage is optional. */ }
+  let active = false, frame = 0, previousTime = 0;
+  const current = { x: 0, y: 0 }, target = { x: 0, y: 0 };
+
+  function paint() {
+    art.style.transform = `translate3d(${(-current.x * 20).toFixed(2)}px, ${(-current.y * 14).toFixed(2)}px, 0)`;
+    light.style.transform = `translate3d(${(current.x * innerWidth * .35).toFixed(2)}px, ${(current.y * innerHeight * .35).toFixed(2)}px, 0)`;
+  }
+  function step(time) {
+    const elapsed = previousTime ? Math.min(time - previousTime, 64) : 16;
+    previousTime = time;
+    const blend = 1 - Math.exp(-elapsed / 110);
+    current.x += (target.x - current.x) * blend;
+    current.y += (target.y - current.y) * blend;
+    const settled = Math.abs(target.x - current.x) + Math.abs(target.y - current.y) < .001;
+    if (settled) { current.x = target.x; current.y = target.y; }
+    paint();
+    frame = settled ? 0 : requestAnimationFrame(step);
+    if (settled) previousTime = 0;
+  }
+  function schedule() { if (active && !frame) frame = requestAnimationFrame(step); }
+  function center() { target.x = 0; target.y = 0; schedule(); }
+  function reset() {
+    cancelAnimationFrame(frame); frame = 0; previousTime = 0;
+    current.x = current.y = target.x = target.y = 0;
+    art.style.removeProperty('transform'); light.style.removeProperty('transform');
+  }
+  function sync() {
+    const allowed = !reduced.matches && mouse.matches;
+    const enabled = wanted && allowed;
+    active = enabled && !document.hidden;
+    scene.dataset.active = String(active);
+    toggle.disabled = !allowed;
+    toggle.setAttribute('aria-pressed', String(enabled));
+    status.textContent = enabled ? 'On' : 'Off';
+    toggle.title = reduced.matches ? 'Motion is off to respect your reduced-motion setting.' : !mouse.matches ? 'The artwork stays still on touch devices.' : 'Toggle gentle cursor-responsive background motion.';
+    reset();
+  }
+  toggle.addEventListener('click', () => {
+    wanted = !wanted;
+    try { localStorage.setItem(storageKey, wanted ? 'on' : 'off'); } catch (_) { /* Storage is optional. */ }
+    sync();
+  });
+  document.addEventListener('pointermove', event => {
+    if (!active || event.pointerType === 'touch' || event.buttons) return;
+    target.x = Math.max(-1, Math.min(1, event.clientX / innerWidth * 2 - 1));
+    target.y = Math.max(-1, Math.min(1, event.clientY / innerHeight * 2 - 1));
+    schedule();
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', center);
+  document.addEventListener('pointerdown', center, { passive: true });
+  window.addEventListener('blur', center);
+  window.addEventListener('resize', reset, { passive: true });
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', sync);
+  mouse.addEventListener('change', sync);
+  toggle.hidden = false;
+  sync();
+})();
+
   </script>
 </body>
 </html>
