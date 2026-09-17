@@ -4,146 +4,152 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Zhongxia Shang is a quantum computing and quantum information researcher at QMATH, University of Copenhagen. Publications, preprints, research news, and contact.">
-  <meta name="theme-color" content="#f6f8fc">
+  <meta name="theme-color" content="#080b12">
   <title>Zhongxia Shang | Quantum Researcher</title>
   <link rel="canonical" href="https://ustcszx.github.io/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=DM+Sans:wght@400;500;550;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <style>
-    :root { --paper: #f6f8fc; --white: #fff; --ink: #142036; --muted: #5b6577; --blue: #234de5; --line: #d6dce7; --serif: 'Instrument Serif', Georgia, serif; --sans: 'DM Sans', system-ui, -apple-system, sans-serif; }
+    :root { color-scheme: dark; --paper: #080b12; --surface: #0d1420; --ink: #edf8ff; --muted: #a0b1c5; --blue: #64f5e8; --pink: #ff70ca; --line: #263847; --white: #080b12; --sans: 'DM Sans', system-ui, -apple-system, sans-serif; --display: 'Chakra Petch', system-ui, sans-serif; --mono: 'IBM Plex Mono', monospace; }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
-    ::selection { color: var(--white); background: var(--blue); }
-    a { color: inherit; text-decoration: none; text-underline-offset: .2em; }
+    body { margin: 0; color: var(--ink); background-color: var(--paper); background-image: linear-gradient(#64f5e806 1px, transparent 1px), linear-gradient(90deg, #64f5e806 1px, transparent 1px); background-size: 48px 48px; font: 400 1rem/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
+    ::selection { background: var(--blue); color: var(--paper); }
+    a { color: inherit; text-decoration: none; text-underline-offset: .22em; }
     a:hover { color: var(--blue); }
-    a:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; border-radius: 2px; }
+    a:focus-visible { outline: 2px solid var(--pink); outline-offset: 5px; }
     h1, h2, h3, h4, p, figure { margin: 0; }
-    h1, h2 { font-family: var(--serif); font-weight: 400; }
     strong { font-weight: 600; }
     img { display: block; max-width: 100%; }
     .wrap { width: min(1184px, calc(100% - 112px)); margin-inline: auto; }
-    .skip-link { position: absolute; left: 1rem; top: -10rem; background: var(--ink); color: white; padding: .6rem 1rem; z-index: 10; }
+    .skip-link { position: absolute; left: 1rem; top: -10rem; background: var(--blue); color: var(--paper); padding: .6rem 1rem; z-index: 10; }
     .skip-link:focus { top: 1rem; }
     .site-header { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding-block: 23px; border-bottom: 1px solid var(--line); }
-    .wordmark { font: 500 1.8rem/1 var(--sans); letter-spacing: -.09em; }
-    .wordmark span { color: var(--blue); }
-    nav { display: flex; gap: 2.3rem; font-size: .875rem; font-weight: 550; }
-    nav a { padding-block: .5rem; }
-    .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 340px); gap: 7%; align-items: center; padding-block: 76px 82px; }
-    .eyebrow { font-size: .8125rem; line-height: 1.5; font-weight: 550; letter-spacing: .11em; text-transform: uppercase; }
-    .hero .eyebrow { display: flex; gap: .7rem; align-items: center; color: var(--muted); letter-spacing: .075em; }
-    .status-dot { display: inline-block; flex-shrink: 0; width: 7px; height: 7px; background: var(--blue); border-radius: 50%; }
-    h1 { font-size: clamp(4.5rem, 7.7vw, 7.1rem); line-height: .96; letter-spacing: -.035em; margin-block: 27px 26px; }
-    h1 > span:first-of-type { font-style: italic; color: var(--blue); }
-    .chinese-name { display: inline-block; vertical-align: middle; font: 400 1.5rem/1.5 'Songti SC', 'Noto Serif CJK SC', serif; letter-spacing: .06em; margin-left: .45rem; color: var(--muted); }
+    .wordmark { font: 700 1.8rem/1 var(--display); letter-spacing: -.05em; }
+    .wordmark span { color: var(--pink); }
+    nav { display: flex; gap: 2.3rem; font: 500 .875rem/1.7 var(--mono); }
+    nav a { padding-block: .5rem; border-bottom: 1px solid transparent; }
+    nav a:hover { border-bottom-color: var(--blue); }
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 320px); gap: 6%; align-items: center; padding-block: 76px 82px; }
+    .eyebrow { font: 500 .8125rem/1.6 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .hero .eyebrow { display: flex; gap: .7rem; align-items: center; color: var(--blue); font-size: .75rem; letter-spacing: .035em; }
+    .status-dot { display: inline-block; flex-shrink: 0; width: 7px; height: 7px; background: var(--blue); box-shadow: 0 0 12px #64f5e888; }
+    h1 { font: 600 clamp(3.5rem, 6.6vw, 6rem)/1.02 var(--display); text-transform: uppercase; letter-spacing: -.035em; margin-block: 28px 26px; }
+    h1 > span:first-of-type { color: var(--blue); text-shadow: 0 0 30px #64f5e826; }
+    .chinese-name { display: inline-block; vertical-align: middle; font: 400 1.45rem/1.5 'PingFang SC', 'Noto Sans CJK SC', sans-serif; letter-spacing: .08em; margin-left: .6rem; color: var(--pink); }
     .hero-description { color: var(--muted); font-size: 1.125rem; line-height: 1.65; }
-    .social-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1.3rem; margin-top: 30px; font-size: .875rem; font-weight: 550; }
+    .social-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1.3rem; margin-top: 30px; font: 500 .875rem/1.7 var(--mono); }
     .social-links a { display: inline-flex; gap: .7rem; align-items: center; padding-block: .65rem; }
-    .social-links .primary-link { background: var(--blue); color: var(--white); padding: .8rem 1.1rem; border: 1px solid var(--blue); border-radius: 3px; }
-    .social-links .primary-link:hover { background: var(--ink); border-color: var(--ink); }
-    .portrait { align-self: center; }
-    .portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 40%; border-radius: 2px; }
-    .portrait figcaption { display: flex; justify-content: space-between; gap: 1rem; padding-top: .8rem; font-size: .75rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
-    .section-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 2.1fr); gap: 64px; border-top: 1px solid var(--line); padding-block: 65px 74px; }
-    .section-number { color: var(--blue); margin-bottom: 19px; }
-    h2 { font-size: clamp(2.75rem, 4.1vw, 3.75rem); line-height: 1.06; letter-spacing: -.025em; }
-    .about-copy { padding-top: 2px; color: var(--muted); }
+    .social-links .primary-link { background: var(--blue); color: var(--paper); padding: .8rem 1.1rem; border: 1px solid var(--blue); clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+    .social-links .primary-link:hover { background: var(--pink); border-color: var(--pink); }
+    .social-links .primary-link:focus-visible { clip-path: none; }
+    .portrait { align-self: center; position: relative; padding: 11px; border: 1px solid #64f5e85c; border-top: 3px solid var(--blue); background: var(--surface); box-shadow: 10px 10px 0 #ff70ca0f, 0 0 40px #64f5e807; }
+    .portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 40%; }
+    .portrait figcaption { display: flex; justify-content: space-between; gap: 1rem; padding-top: .85rem; font: 400 .75rem/1.5 var(--mono); color: var(--muted); letter-spacing: .07em; text-transform: uppercase; }
+    .portrait figcaption span:first-child { color: var(--pink); font-size: .8125rem; }
+    .section-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 2.1fr); gap: 64px; border-top: 1px solid var(--line); padding-block: 62px 70px; }
+    .section-number { color: var(--pink); margin-bottom: 18px; }
+    h2 { font: 500 clamp(2rem, 3.5vw, 3.15rem)/1.12 var(--display); letter-spacing: -.02em; }
+    .about-copy { color: var(--muted); }
     .about-copy p + p { margin-top: 1.6rem; }
     .about-copy strong { color: var(--ink); }
-    .about-copy a { text-decoration: underline; text-decoration-color: #bac4d8; text-decoration-thickness: 1px; }
-    .research-note { padding-left: 1.5rem; border-left: 2px solid var(--blue); }
+    .about-copy a { text-decoration: underline; text-decoration-color: #64f5e85c; text-decoration-thickness: 1px; }
+    .research-note { padding: 1.15rem 1.4rem; border-left: 2px solid var(--blue); background: #64f5e805; }
     .news-list { list-style: none; padding: 0; margin: 0; }
     .news-item { display: grid; grid-template-columns: 108px minmax(0, 1fr); gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--line); }
     .news-item:first-child { padding-top: 0; }
     .news-item:last-child { border-bottom: 0; padding-bottom: 0; }
-    .news-date { padding-top: 3px; font-size: .875rem; color: var(--muted); line-height: 1.6; }
+    .news-date { padding-top: 3px; font: 400 .8125rem/1.65 var(--mono); color: var(--muted); }
     .news-item:first-child .news-date { color: var(--blue); }
     .news-item p { font-size: 1rem; line-height: 1.75; }
     .news-item strong { font-weight: 550; }
+    .news-item em { color: var(--pink); font-style: normal; }
     .news-item a:hover { text-decoration: underline; }
-    .papers-section { border-top: 1px solid var(--line); padding-block: 65px 88px; }
+    .papers-section { border-top: 1px solid var(--line); padding-block: 62px 80px; }
     .papers-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; }
-    .text-link { display: inline-flex; align-items: center; gap: 1.1rem; border-bottom: 1px solid var(--ink); padding-bottom: .35rem; font-size: .875rem; font-weight: 550; white-space: nowrap; }
+    .text-link { display: inline-flex; align-items: center; gap: 1.1rem; border-bottom: 1px solid var(--blue); color: var(--blue); padding-bottom: .35rem; font: 500 .875rem/1.7 var(--mono); white-space: nowrap; }
     .author-note { margin-block: 22px 42px; font-size: .875rem; color: var(--muted); }
     .paper-group { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 2.1fr); gap: 64px; }
-    .paper-group + .paper-group { margin-top: 60px; }
-    .paper-group > h3 { font-weight: 550; font-size: .875rem; padding-block: 22px; border-top: 2px solid var(--blue); }
-    .paper-list { border-top: 2px solid var(--ink); }
-    .paper { display: grid; grid-template-columns: minmax(0, 1fr) 66px; gap: 24px; padding-block: 23px 25px; border-bottom: 1px solid var(--line); }
-    .paper h4 { font-size: 1.125rem; font-weight: 550; line-height: 1.5; letter-spacing: -.012em; }
+    .paper-group + .paper-group { margin-top: 58px; }
+    .paper-group > h3 { font: 500 1rem/1.55 var(--display); padding-block: 19px; border-top: 2px solid var(--blue); color: var(--blue); }
+    #preprints > h3 { color: var(--pink); border-top-color: var(--pink); }
+    .paper-list { min-width: 0; border-top: 2px solid var(--line); }
+    .paper { display: grid; grid-template-columns: minmax(0, 1fr) 66px; gap: 24px; padding: 23px 22px 25px; background: #0d1420d9; border: 1px solid var(--line); border-top: 0; }
+    .paper:hover { background: #111d2b; border-left-color: var(--blue); }
+    .paper h4 { font: 550 1.125rem/1.5 var(--sans); letter-spacing: -.012em; }
     .paper h4 a:hover { text-decoration: underline; }
     .authors { margin-top: 10px; color: var(--muted); font-size: .875rem; line-height: 1.65; }
     .authors strong { color: var(--ink); font-weight: 600; }
-    .venue { margin-top: 6px; font-size: .875rem; color: var(--blue); }
-    .paper-links { display: flex; flex-direction: column; align-items: stretch; gap: .5rem; padding-top: 3px; font-size: .875rem; }
+    .venue { margin-top: 8px; font-size: .875rem; color: var(--blue); }
+    .conference-venue { margin-top: 9px; font-size: .875rem; color: var(--pink); }
+    .conference-venue a { text-decoration: underline; text-decoration-color: #ff70ca66; }
+    .conference-venue a:hover { color: var(--ink); }
+    .venue-label { display: inline-block; font: 500 .75rem/1.6 var(--mono); padding: .15rem .4rem; margin-right: .4rem; border: 1px solid #ff70ca55; letter-spacing: .025em; text-transform: uppercase; vertical-align: baseline; }
+    .paper-links { display: flex; flex-direction: column; align-items: stretch; gap: .5rem; padding-top: 3px; font: 400 .8125rem/1.7 var(--mono); }
     .paper-links a { display: flex; justify-content: space-between; gap: .5rem; padding-block: .2rem; }
     .paper-links a:hover { text-decoration: underline; }
-    .contact-section { background: var(--ink); color: var(--white); padding-block: 61px 64px; }
+    .contact-section { background: #111322; border-top: 1px solid #ff70ca66; border-bottom: 1px solid var(--line); padding-block: 58px 61px; }
     .contact-inner { display: flex; justify-content: space-between; gap: 3rem; align-items: center; }
-    .contact-section .section-number { color: #aebfff; }
-    .contact-section h2 { font-size: clamp(2.7rem, 3.8vw, 3.5rem); }
-    .contact-section p:not(.eyebrow) { color: #c2cad8; font-size: .9375rem; margin-top: 20px; max-width: 30rem; }
-    .email-link { display: inline-flex; gap: 2rem; align-items: center; border-bottom: 1px solid #8d9ab1; padding-block: .75rem; font-size: 1rem; overflow-wrap: anywhere; }
-    .email-link:hover { color: #aebfff; border-color: #aebfff; }
-    .contact-section a:focus-visible { outline-color: #aebfff; }
+    .contact-section h2 { font-size: clamp(2rem, 3.1vw, 2.9rem); }
+    .contact-section p:not(.eyebrow) { color: var(--muted); font-size: .9375rem; margin-top: 20px; max-width: 30rem; }
+    .email-link { display: inline-flex; gap: 1.5rem; align-items: center; border-bottom: 1px solid var(--blue); padding-block: .75rem; color: var(--blue); font: 400 .875rem/1.7 var(--mono); overflow-wrap: anywhere; }
+    .email-link:hover { color: var(--pink); border-color: var(--pink); }
     .visitors { padding-block: 38px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 2.1fr); gap: 64px; }
-    .visitors h2 { font: 500 .875rem/1.7 var(--sans); letter-spacing: 0; color: var(--muted); }
+    .visitors h2 { font: 400 .875rem/1.7 var(--mono); letter-spacing: 0; color: var(--muted); }
     .visitor-map { min-width: 0; max-width: 640px; }
     .visitor-map img, .visitor-map iframe { max-width: 100%; }
-    .site-footer { border-top: 1px solid var(--line); padding-block: 26px; display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: .8125rem; }
-    .codex-credit { display: flex; gap: .6rem; align-items: center; }
+    .site-footer { border-top: 1px solid var(--line); padding-block: 26px; display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; align-items: center; color: var(--muted); font: 400 .75rem/1.7 var(--mono); }
+    .codex-credit { display: flex; gap: .6rem; align-items: center; color: var(--blue); }
     .codex-credit .status-dot { width: 5px; height: 5px; }
-    .site-footer a { font-size: .875rem; }
+    .site-footer a { font-size: .8125rem; }
     .site-footer a span { margin-left: .6rem; }
     @media (min-width: 1800px) { .wrap { width: 1280px; } }
     @media (max-width: 1000px) {
       .wrap { width: calc(100% - 64px); }
       .hero { grid-template-columns: minmax(0, 1fr) minmax(200px, 29%); gap: 5%; }
-      h1 { font-size: clamp(4.5rem, 8.5vw, 6rem); }
-      .hero .eyebrow { font-size: .75rem; }
-      .section-grid, .paper-group, .visitors { gap: 36px; grid-template-columns: minmax(0, .75fr) minmax(0, 2.25fr); }
+      h1 { font-size: clamp(3.5rem, 6.6vw, 5.4rem); }
+      .section-grid, .paper-group, .visitors { gap: 32px; grid-template-columns: minmax(0, .75fr) minmax(0, 2.25fr); }
       .contact-inner { align-items: start; flex-direction: column; gap: 1.6rem; }
+      .paper { padding-inline: 18px; gap: 18px; }
     }
     @media (max-width: 720px) {
       .wrap { width: calc(100% - 40px); }
-      .site-header { padding-block: 18px; gap: 1rem; }
-      nav { gap: 1.2rem; }
-      .hero { grid-template-columns: minmax(0, 1fr); padding-block: 43px 46px; gap: 37px; }
-      h1 { font-size: clamp(4.7rem, 16vw, 6.5rem); margin-block: 24px 21px; }
-      .chinese-name { font-size: 1.3rem; }
-      .hero .eyebrow { font-size: .75rem; }
+      .site-header { padding-block: 17px; gap: 1rem; flex-wrap: wrap; }
+      nav { gap: 1rem; font-size: .8125rem; flex-wrap: wrap; }
+      .hero { grid-template-columns: minmax(0, 1fr); padding-block: 42px 45px; gap: 37px; }
+      h1 { font-size: clamp(2.7rem, 10.6vw, 4.8rem); margin-block: 24px 21px; }
+      .chinese-name { font-size: 1.25rem; }
+      .hero .eyebrow { font-size: .75rem; letter-spacing: 0; }
       .hero-description { font-size: 1.0625rem; }
-      .portrait { width: min(100%, 380px); }
+      .portrait { width: min(calc(100% - 10px), 370px); }
       .portrait img { aspect-ratio: 5 / 4; }
-      .social-links { gap: 1.15rem; margin-top: 24px; }
-      .section-grid, .paper-group, .visitors { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-      .section-grid, .papers-section { padding-block: 43px 48px; }
-      .section-heading h2 br { display: none; }
+      .social-links { gap: 1.1rem; margin-top: 24px; font-size: .8125rem; }
+      .section-grid, .paper-group, .visitors { grid-template-columns: minmax(0, 1fr); gap: 27px; }
+      .section-grid, .papers-section { padding-block: 41px 46px; }
       .section-number { margin-bottom: 13px; }
       .news-item { grid-template-columns: 82px minmax(0, 1fr); gap: 16px; padding-block: 20px; }
-      .news-date { font-size: .8125rem; }
+      .news-date { font-size: .75rem; }
       .papers-heading { align-items: start; flex-direction: column; gap: 21px; }
-      .author-note { margin-block: 22px 32px; }
+      .author-note { margin-block: 22px 31px; }
       .paper-group { gap: 0; }
       .paper-group > h3 { padding-block: 16px; }
-      .paper { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-block: 21px 24px; }
+      .paper { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 20px 18px 23px; }
       .paper h4 { font-size: 1.0625rem; }
       .paper-links { flex-direction: row; gap: 1.4rem; padding-top: 0; }
       .paper-links a { gap: .55rem; }
-      .paper-group + .paper-group { margin-top: 39px; }
-      .contact-section { padding-block: 43px 46px; }
-      .email-link { gap: 1.3rem; font-size: .9375rem; }
-      .visitors { gap: 18px; padding-block: 30px; }
+      .paper-group + .paper-group { margin-top: 37px; }
+      .contact-section { padding-block: 41px 44px; }
+      .email-link { gap: 1rem; font-size: .8125rem; }
+      .visitors { gap: 18px; padding-block: 29px; }
       .site-footer { gap: 14px 24px; padding-block: 23px; }
     }
     @media (max-width: 380px) {
-      nav { gap: .85rem; font-size: .8125rem; }
+      .wrap { width: calc(100% - 32px); }
+      nav { gap: .8rem; font-size: .75rem; }
       .news-item { grid-template-columns: minmax(0, 1fr); gap: 7px; }
-      .hero .eyebrow { letter-spacing: .02em; }
       .social-links { gap: 1rem; }
-      .chinese-name { font-size: 1.125rem; margin-left: .1rem; }
+      .chinese-name { font-size: 1.125rem; margin-left: .2rem; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
@@ -175,12 +181,12 @@
     </section>
 
     <section id="about" class="section-grid wrap" aria-labelledby="about-title">
-      <div class="section-heading"><p class="eyebrow section-number" aria-hidden="true">01 / ABOUT</p><h2 id="about-title">A little <br>about me.</h2></div>
+      <div class="section-heading"><p class="eyebrow section-number" aria-hidden="true">01 / ABOUT</p><h2 id="about-title">About me.</h2></div>
       <div class="about-copy"><p>My name is Zhongxia Shang (or Zhong-Xia Shang used in publications). I am currently a postdoctoral researcher at QMATH at the <strong>University of Copenhagen</strong> hosted by <strong><a href="https://danielstilckfranca.eu/" target="_blank" rel="noopener noreferrer">Daniel Stilck França</a></strong>. Previously, I was an HKIQST postdoctoral fellow affiliated with the <strong>University of Hong Kong (HKU)</strong>. My hosts were <strong><a href="https://scholar.google.com/citations?user=fkJk8H4AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Prof. Wang Yao</a></strong> and <strong><a href="https://qizhao-quantum.github.io/" target="_blank" rel="noopener noreferrer">Prof. Qi Zhao</a></strong>. I obtained my Ph.D. degree in Physics at <strong>University of Science and Technology of China (USTC)</strong> (2024). My advisor was <strong><a href="https://scholar.google.com/citations?user=0AJt_zEAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Prof. Chao-Yang Lu</a></strong>. I also obtained my B.S. degree in Physics at the School of Gifted Young, <strong>USTC</strong> (2019).</p><p class="research-note">I began my quantum journey on the experimental side of quantum computing, but later shifted my focus to the theoretical side, where I have been really enjoying designing new quantum algorithms and exploring quantum advantages. In my view, the current biggest bottleneck of quantum computing is the lack of applications. I hope to make quantum computing more useful and valuable by the day we finally create a universal fault-tolerant quantum computer!</p></div>
     </section>
 
     <section id="news" class="section-grid wrap" aria-labelledby="news-title">
-      <div class="section-heading"><p class="eyebrow section-number" aria-hidden="true">02 / NEWS</p><h2 id="news-title">The latest.</h2></div>
+      <div class="section-heading"><p class="eyebrow section-number" aria-hidden="true">02 / NEWS</p><h2 id="news-title">Research updates.</h2></div>
       <ol class="news-list">
           <li class="news-item"><span class="news-date">September 2026</span><p>New paper <strong><a href="https://arxiv.org/abs/2609.12284" target="_blank" rel="noopener noreferrer">&quot;A Simple Quantum Linear-System Solver via Dissipation&quot;</a></strong>!</p></li>
           <li class="news-item"><span class="news-date">2026</span><p>Paper <strong><a href="https://arxiv.org/abs/2505.09512" target="_blank" rel="noopener noreferrer">&quot;Bra-ket entanglement, an indicator bridging entanglement, magic, and coherence&quot;</a></strong> got accepted as a contributed talk in <em>AQIS 2026</em>!</p></li>
@@ -195,11 +201,19 @@
     </section>
 
     <section id="papers" class="papers-section wrap" aria-labelledby="papers-title">
-      <div class="papers-heading"><div><p class="eyebrow section-number" aria-hidden="true">03 / RESEARCH</p><h2 id="papers-title">Papers &amp; preprints.</h2></div><a class="text-link" href="https://scholar.google.com/citations?user=eDQgtCQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></div>
-      <p class="author-note">Unless marked as “alphabetical order”, the authors of papers are listed by contribution.</p>
+      <div class="papers-heading"><div><p class="eyebrow section-number" aria-hidden="true">03 / RESEARCH</p><h2 id="papers-title">Publications &amp; preprints.</h2></div><a class="text-link" href="https://scholar.google.com/citations?user=eDQgtCQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></div>
+      <p class="author-note">Journal publications and accepted conference talks are listed together, with one entry per paper. Unless marked as “alphabetical order”, authors are listed by contribution.</p>
       <div class="paper-group" id="publications">
-        <h3>Peer-reviewed publications</h3>
+        <h3>Journal publications &amp; conference talks</h3>
         <div class="paper-list">
+          <article class="paper">
+            <div class="paper-main">
+              <h4><a href="https://www.science.org/doi/abs/10.1126/science.ado3912" target="_blank" rel="noopener noreferrer">Realization of fractional quantum Hall state with interacting photons</a></h4>
+              <p class="authors">C Wang, FM Liu, MC Chen, H Chen, XH Zhao, C Ying, <strong>ZX Shang</strong>, et al.</p>
+              <p class="venue">Science 384 (6695), 579-584 (2024)</p>
+            </div>
+            <div class="paper-links"><a href="https://www.science.org/doi/abs/10.1126/science.ado3912" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2401.17022" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
+          </article>
           <article class="paper">
             <div class="paper-main">
               <h4><a href="https://iopscience.iop.org/article/10.1088/1361-6633/ae6df7" target="_blank" rel="noopener noreferrer">Exponential Lindbladian fast forwarding and exponential amplification of certain Gibbs state properties</a></h4>
@@ -218,6 +232,24 @@
           </article>
           <article class="paper">
             <div class="paper-main">
+              <h4><a href="https://arxiv.org/abs/2510.06759" target="_blank" rel="noopener noreferrer">Fast-forwardable Lindbladians imply quantum phase estimation</a></h4>
+              <p class="authors"><strong>ZX Shang</strong>, N Guo, P Rebentrost, A Aspuru-Guzik, T Li, Q Zhao</p>
+              <p class="venue">arXiv:2510.06759 (2025)</p>
+              <p class="conference-venue"><span class="venue-label">Talk</span> <a href="https://qipconference.org/2026/accepted-papers/" target="_blank" rel="noopener noreferrer">QIP 2026 · Contributed talk</a></p>
+            </div>
+            <div class="paper-links"><a href="https://arxiv.org/abs/2510.06759" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="paper">
+            <div class="paper-main">
+              <h4><a href="https://arxiv.org/abs/2505.09512" target="_blank" rel="noopener noreferrer">Bra-ket entanglement, an indicator bridging entanglement, magic, and coherence</a></h4>
+              <p class="authors"><strong>ZX Shang</strong>, SY Chen, W Yu, G Chiribella, Q Zhao</p>
+              <p class="venue">arXiv:2505.09512 (2025)</p>
+              <p class="conference-venue"><span class="venue-label">Talk</span> <a href="https://aqis-conf.org/2026/wp-content/uploads/2026/08/AQIS_2026_talk_schedule_August_24.pdf" target="_blank" rel="noopener noreferrer">AQIS 2026 · Contributed talk</a></p>
+            </div>
+            <div class="paper-links"><a href="https://arxiv.org/abs/2505.09512" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="paper">
+            <div class="paper-main">
               <h4><a href="https://journals.aps.org/prxquantum/abstract/10.1103/gw1c-5b58" target="_blank" rel="noopener noreferrer">Boson sampling enhanced quantum chemistry</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, Y Zhang, HS Zhong, CC Yu, X Yuan, CY Lu, JW Pan, MC Chen</p>
               <p class="venue">PRX Quantum 6 (4), 040357 (2025)</p>
@@ -229,16 +261,9 @@
               <h4><a href="https://journals.aps.org/prl/abstract/10.1103/cvl9-97qg" target="_blank" rel="noopener noreferrer">Designing a Nearly Optimal Quantum Algorithm for Linear Differential Equations via Lindbladians</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, N Guo, D An, Q Zhao</p>
               <p class="venue">Physical Review Letters 135 (12), 120604 (2025)</p>
+              <p class="conference-venue"><span class="venue-label">Talk</span> <a href="https://aqis-conf.org/2025/wp-content/uploads/2025/08/ParallelSessions_Final0807.pdf" target="_blank" rel="noopener noreferrer">AQIS 2025 · Contributed talk</a></p>
             </div>
             <div class="paper-links"><a href="https://journals.aps.org/prl/abstract/10.1103/cvl9-97qg" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2410.19628" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
-          </article>
-          <article class="paper">
-            <div class="paper-main">
-              <h4><a href="https://www.science.org/doi/abs/10.1126/science.ado3912" target="_blank" rel="noopener noreferrer">Realization of fractional quantum Hall state with interacting photons</a></h4>
-              <p class="authors">C Wang, FM Liu, MC Chen, H Chen, XH Zhao, C Ying, <strong>ZX Shang</strong>, et al.</p>
-              <p class="venue">Science 384 (6695), 579-584 (2024)</p>
-            </div>
-            <div class="paper-links"><a href="https://www.science.org/doi/abs/10.1126/science.ado3912" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2401.17022" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
           <article class="paper">
             <div class="paper-main">
@@ -247,6 +272,15 @@
               <p class="venue">Physical Review A 109 (6), 062608 (2024)</p>
             </div>
             <div class="paper-links"><a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.109.062608" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2403.03478" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="paper">
+            <div class="paper-main">
+              <h4><a href="https://arxiv.org/abs/2401.13946" target="_blank" rel="noopener noreferrer">A polynomial-time dissipation-based quantum algorithm for solving the ground states of a class of classically hard Hamiltonians</a></h4>
+              <p class="authors"><strong>ZX Shang</strong>, ZH Chen, CY Lu, JW Pan, MC Chen</p>
+              <p class="venue">arXiv:2401.13946 (2024)</p>
+              <p class="conference-venue"><span class="venue-label">Talk</span> <a href="https://aqis-conf.org/2024/wp-content/uploads/2024/08/RegularTalk0824.pdf" target="_blank" rel="noopener noreferrer">AQIS 2024 · Contributed talk</a></p>
+            </div>
+            <div class="paper-links"><a href="https://arxiv.org/abs/2401.13946" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
           <article class="paper">
             <div class="paper-main">
@@ -295,22 +329,6 @@
           </article>
           <article class="paper">
             <div class="paper-main">
-              <h4><a href="https://arxiv.org/abs/2510.06759" target="_blank" rel="noopener noreferrer">Fast-forwardable Lindbladians imply quantum phase estimation</a></h4>
-              <p class="authors"><strong>ZX Shang</strong>, N Guo, P Rebentrost, A Aspuru-Guzik, T Li, Q Zhao</p>
-              <p class="venue">arXiv:2510.06759 (2025)</p>
-            </div>
-            <div class="paper-links"><a href="https://arxiv.org/abs/2510.06759" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
-          </article>
-          <article class="paper">
-            <div class="paper-main">
-              <h4><a href="https://arxiv.org/abs/2505.09512" target="_blank" rel="noopener noreferrer">Bra-ket entanglement, an indicator bridging entanglement, magic, and coherence</a></h4>
-              <p class="authors"><strong>ZX Shang</strong>, SY Chen, W Yu, G Chiribella, Q Zhao</p>
-              <p class="venue">arXiv:2505.09512 (2025)</p>
-            </div>
-            <div class="paper-links"><a href="https://arxiv.org/abs/2505.09512" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
-          </article>
-          <article class="paper">
-            <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2412.03109" target="_blank" rel="noopener noreferrer">Pauli quantum computing: <em>I</em> as |0⟩ and <em>X</em> as |1⟩</a></h4>
               <p class="authors"><strong>ZX Shang</strong></p>
               <p class="venue">arXiv:2412.03109 (2024)</p>
@@ -324,14 +342,6 @@
               <p class="venue">arXiv:2408.13721 (2024)</p>
             </div>
             <div class="paper-links"><a href="https://arxiv.org/abs/2408.13721" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
-          </article>
-          <article class="paper">
-            <div class="paper-main">
-              <h4><a href="https://arxiv.org/abs/2401.13946" target="_blank" rel="noopener noreferrer">A polynomial-time dissipation-based quantum algorithm for solving the ground states of a class of classically hard Hamiltonians</a></h4>
-              <p class="authors"><strong>ZX Shang</strong>, ZH Chen, CY Lu, JW Pan, MC Chen</p>
-              <p class="venue">arXiv:2401.13946 (2024)</p>
-            </div>
-            <div class="paper-links"><a href="https://arxiv.org/abs/2401.13946" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
         </div>
       </div>
@@ -347,7 +357,7 @@
     <section class="visitors wrap" aria-labelledby="visitors-title">
       <h2 id="visitors-title">Visitor statistics</h2>
       <div class="visitor-map">
-        <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=H0DOdjZixL0pPzyxVRMsoF9kadLyCUBiFAOzxgBwBZo&amp;cl=ffffff&amp;w=a"></script>
+        <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=H0DOdjZixL0pPzyxVRMsoF9kadLyCUBiFAOzxgBwBZo&amp;cl=080b12&amp;w=a"></script>
       </div>
     </section>
   </main>
@@ -358,3 +368,4 @@
   </footer>
 </body>
 </html>
+
