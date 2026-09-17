@@ -208,6 +208,7 @@
     .character-reaction { position: absolute; overflow: hidden; pointer-events: none; opacity: 0; transform-origin: 50% 80%; mask-image: radial-gradient(ellipse closest-side at center, #000 75%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 75%, transparent 100%); }
     .quantum-art .character-reaction img { position: absolute; max-width: none; object-fit: fill; object-position: 0 0; }
     @media (prefers-reduced-motion: reduce), (hover: none) { .character-reaction { display: none; } }
+    .character-action { opacity: 0; }
     .quantum-veil { position: absolute; inset: 0; background: linear-gradient(90deg, #080b1233, #080b128c 27%, #080b1296 67%, #080b123d), linear-gradient(0deg, #080b1226, transparent 60%); }
     .quantum-light { position: absolute; left: 50%; top: 50%; width: min(720px, 100vw); aspect-ratio: 1; margin-left: max(-360px, -50vw); margin-top: max(-360px, -50vw); background: radial-gradient(circle, #64f5e813, #a36cfe08 35%, transparent 68%); opacity: 0; }
     .quantum-background[data-active="true"] .quantum-art { will-change: transform; }
@@ -233,8 +234,14 @@
     <div class="quantum-art">
       <img src="quantum-castle.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low">
       <div class="character-reaction knight-reaction" data-character="knight"><img src="castle-characters-reacting.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low"></div>
-      <div class="character-reaction" data-character="luffy"><img src="castle-characters-reacting.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low"></div>
-      <div class="character-reaction" data-character="solaire"><img src="castle-characters-reacting.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low"></div>
+      <div class="character-reaction" data-character="luffy">
+        <img src="castle-characters-reacting.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low">
+        <img class="character-action" src="characters-wave-a.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low">
+      </div>
+      <div class="character-reaction" data-character="solaire">
+        <img src="characters-wave-a.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low">
+        <img class="character-action" src="characters-wave-b.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low">
+      </div>
     </div>
     <div class="quantum-veil"></div>
     <div class="quantum-light"></div>
@@ -258,7 +265,7 @@
           <a href="https://x.com/zhongxiaquantum" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span></a>
         </div>
         <div class="background-tools">
-          <span class="background-caption" title="Hollow Knight · One Piece · Dark Souls I. Move the cursor close to a character to say hello.">AI art · Quantum kingdom</span>
+          <span class="background-caption" title="Hollow Knight · One Piece · Dark Souls I. Move close: the Knight looks over, Luffy takes off his hat, and Solaire waves his arms.">AI art · Quantum kingdom</span>
           <button class="background-toggle" id="background-toggle" type="button" aria-label="Background motion" aria-pressed="false" hidden>Background motion <span class="motion-state" aria-hidden="true">Off</span></button>
         </div>
       </div>
@@ -556,13 +563,14 @@
   // Coordinates are in the original illustration, before its responsive cover crop.
   const characters = [
     { name: 'knight', x: 1344, y: 667, radius: 115, patch: { x: 1306, y: 621, width: 76, height: 87 } },
-    { name: 'luffy', x: 930, y: 799, radius: 110, patch: { x: 858, y: 705, width: 150, height: 204 } },
-    { name: 'solaire', x: 600, y: 802, radius: 125, patch: { x: 475, y: 630, width: 270, height: 300 } }
+    { name: 'luffy', x: 930, y: 799, radius: 110, patch: { x: 820, y: 635, width: 230, height: 295 } },
+    { name: 'solaire', x: 600, y: 802, radius: 125, patch: { x: 450, y: 605, width: 320, height: 325 } }
   ].map(character => {
     const element = scene.querySelector('[data-character="' + character.name + '"]');
-    const image = element.querySelector('img');
-    return { ...character, element, image, look: 0, desired: 0,
-      ready: image.complete && image.naturalWidth > 0, geometry: { x: 0, y: 0, radius: 110 } };
+    const images = Array.from(element.querySelectorAll('img'));
+    return { ...character, element, images, look: 0, desired: 0, action: 0, phase: 0,
+      ready: images.every(image => image.complete && image.naturalWidth > 0),
+      geometry: { x: 0, y: 0, radius: 110 } };
   });
   const pointer = { x: 0, y: 0, present: false };
   const current = { x: 0, y: 0 }, target = { x: 0, y: 0 };
@@ -576,7 +584,7 @@
     const x = (width - source.width * scale) * (tall.matches ? .72 : .5);
     const y = (height - source.height * scale) * .5;
     for (const character of characters) {
-      const { patch, element, image } = character;
+      const { patch, element, images } = character;
       character.geometry = {
         x: art.offsetLeft + x + character.x * scale,
         y: art.offsetTop + y + character.y * scale,
@@ -586,7 +594,7 @@
         left: (x + patch.x * scale) + 'px', top: (y + patch.y * scale) + 'px',
         width: (patch.width * scale) + 'px', height: (patch.height * scale) + 'px'
       });
-      Object.assign(image.style, {
+      for (const image of images) Object.assign(image.style, {
         width: (source.width * scale) + 'px', height: (source.height * scale) + 'px',
         left: (-patch.x * scale) + 'px', top: (-patch.y * scale) + 'px'
       });
@@ -604,7 +612,19 @@
   function paint() {
     art.style.transform = `translate3d(${(-current.x * 20).toFixed(2)}px, ${(-current.y * 14).toFixed(2)}px, 0)`;
     light.style.transform = `translate3d(${(current.x * innerWidth * .35).toFixed(2)}px, ${(current.y * innerHeight * .35).toFixed(2)}px, 0)`;
-    for (const character of characters) character.element.style.opacity = character.look.toFixed(4);
+    for (const character of characters) {
+      character.element.style.opacity = character.look.toFixed(4);
+      if (character.name === 'luffy') {
+        // Reach for the brim first, then lift the hat clear of the head and hold it.
+        const t = Math.max(0, Math.min(1, (character.action - .22) / .78));
+        character.images[1].style.opacity = (t * t * (3 - 2 * t)).toFixed(4);
+      } else if (character.name === 'solaire') {
+        // Hold each drawn pose; keep the in-between blend short to avoid doubled arms.
+        const wave = (1 - Math.cos(character.phase)) / 2;
+        const t = Math.max(0, Math.min(1, (wave - .35) / .3));
+        character.images[1].style.opacity = (t * t * (3 - 2 * t)).toFixed(4);
+      }
+    }
   }
   function step(time) {
     const elapsed = previousTime ? Math.min(time - previousTime, 64) : 16;
@@ -613,12 +633,23 @@
     current.x += (target.x - current.x) * blend;
     current.y += (target.y - current.y) * blend;
     let residual = Math.abs(target.x - current.x) + Math.abs(target.y - current.y);
+    let waving = false;
     for (const character of characters) {
       character.desired = attention(character);
       character.look += (character.desired - character.look) * (1 - Math.exp(-elapsed / 130));
       residual += Math.abs(character.desired - character.look);
+      if (character.name === 'luffy') {
+        const destination = character.desired > .35 ? 1 : 0;
+        const duration = destination ? 720 : 360;
+        character.action += Math.sign(destination - character.action) * Math.min(Math.abs(destination - character.action), elapsed / duration);
+        residual += Math.abs(destination - character.action);
+      } else if (character.name === 'solaire' && character.desired > .08) {
+        // Keep waving only while the cursor is nearby. Each cycle is 1.2 seconds.
+        character.phase = (character.phase + elapsed / 1200 * Math.PI * 2) % (Math.PI * 2);
+        waving = true;
+      }
     }
-    const settled = residual < .001;
+    const settled = !waving && residual < .001;
     if (settled) {
       current.x = target.x; current.y = target.y;
       for (const character of characters) character.look = character.desired;
@@ -635,8 +666,9 @@
     current.x = current.y = target.x = target.y = 0;
     art.style.removeProperty('transform'); light.style.removeProperty('transform');
     for (const character of characters) {
-      character.look = character.desired = 0;
+      character.look = character.desired = character.action = character.phase = 0;
       character.element.style.opacity = '0';
+      if (character.images[1]) character.images[1].style.opacity = '0';
     }
   }
   function sync() {
@@ -647,7 +679,7 @@
     toggle.disabled = !allowed;
     toggle.setAttribute('aria-pressed', String(enabled));
     status.textContent = enabled ? 'On' : 'Off';
-    toggle.title = reduced.matches ? 'Motion is off to respect your reduced-motion setting.' : !mouse.matches ? 'The artwork stays still on touch devices.' : 'Toggle background movement and character reactions. Move close to the Knight, Luffy, or Solaire to say hello.';
+    toggle.title = reduced.matches ? 'Motion is off to respect your reduced-motion setting.' : !mouse.matches ? 'The artwork stays still on touch devices.' : 'Move close: the Knight looks over, Luffy takes off his hat, and Solaire waves his arms. Toggle all background motion.';
     reset();
   }
   function trackPointer(event) {
@@ -673,8 +705,10 @@
   reduced.addEventListener('change', sync);
   mouse.addEventListener('change', sync);
   for (const character of characters) {
-    character.image.addEventListener('load', () => { character.ready = true; schedule(); });
-    character.image.addEventListener('error', () => { character.ready = false; schedule(); });
+    for (const image of character.images) {
+      image.addEventListener('load', () => { character.ready = character.images.every(frame => frame.complete && frame.naturalWidth > 0); schedule(); });
+      image.addEventListener('error', () => { character.ready = false; schedule(); });
+    }
   }
   toggle.hidden = false;
   measure(); sync();
