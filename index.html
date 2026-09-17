@@ -152,6 +152,76 @@
       .chinese-name { font-size: 1.125rem; margin-left: .2rem; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    [hidden] { display: none !important; }
+    .explore-section { border-top: 1px solid var(--line); padding-block: 62px 70px; }
+    .explore-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 30px; }
+    .explore-heading > p { max-width: 22rem; color: var(--muted); font-size: .9375rem; }
+    .explore-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    .lab-panel { min-width: 0; border: 1px solid var(--line); border-top: 2px solid var(--blue); background: #0d1420ed; padding: 25px; }
+    .research-panel { border-top-color: var(--pink); }
+    .lab-panel-heading .eyebrow { color: var(--blue); font-size: .75rem; margin-bottom: 11px; }
+    .research-panel .eyebrow { color: var(--pink); }
+    .lab-panel h3 { font: 500 1.7rem/1.2 var(--display); }
+    .lab-panel-heading > p:last-child { font-size: .9375rem; color: var(--muted); margin-top: 12px; }
+    .sphere-stage { margin-top: 12px; background: #080d17; border: 1px solid var(--line); }
+    #bloch-canvas { display: block; width: 100%; height: auto; aspect-ratio: 10 / 7; touch-action: none; cursor: grab; }
+    #bloch-canvas.dragging { cursor: grabbing; }
+    .sphere-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-block: 12px 19px; }
+    .sphere-toolbar p { color: var(--muted); font-size: .8125rem; max-width: 18rem; }
+    .lab-panel button { font-family: var(--mono); color: var(--ink); background: #101b2a; border: 1px solid #344b5e; border-radius: 0; cursor: pointer; font-size: .875rem; min-height: 40px; padding: .55rem .8rem; }
+    .lab-panel button:hover { border-color: var(--blue); color: var(--blue); }
+    .lab-panel button:focus-visible, #bloch-canvas:focus-visible, .map-results-scroll:focus-visible, .density-details summary:focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
+    .sphere-toolbar button, .map-results-heading button { flex-shrink: 0; font-size: .75rem; padding-inline: .65rem; }
+    .bloch-readouts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--line); padding-block: 13px; gap: 15px; }
+    .bloch-readouts span { display: block; color: var(--muted); font: 400 .75rem/1.5 var(--mono); }
+    .bloch-readouts output { display: block; color: var(--blue); font: 500 1.25rem/1.7 var(--mono); }
+    .bloch-vector { color: var(--muted); font-size: .8125rem; margin-block: 13px 19px; }
+    .bloch-vector output { color: var(--ink); font-family: var(--mono); display: inline-block; }
+    .lab-controls { border: 0; margin: 0 0 19px; padding: 0; min-width: 0; }
+    .lab-controls legend { padding: 0; margin-bottom: 9px; font-size: .875rem; color: var(--muted); }
+    .control-row { display: flex; gap: 9px; flex-wrap: wrap; }
+    .control-row button { min-width: 60px; }
+    .gate-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .gate-row button { min-width: 0; padding: .55rem .25rem; font-size: 1.0625rem; }
+    .gate-row small { display: block; font: 400 .75rem/1.5 var(--sans); color: var(--muted); }
+    .range-heading { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: .875rem; }
+    .range-heading output { color: var(--pink); font-family: var(--mono); }
+    #dephasing { width: 100%; accent-color: var(--pink); min-height: 28px; margin: 9px 0; cursor: pointer; }
+    #dephasing:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+    .dephasing-control > p, .density-details > p { color: var(--muted); font-size: .8125rem; line-height: 1.7; }
+    .lab-status { margin-top: 17px; padding: 10px 12px; font-size: .8125rem; line-height: 1.7; color: var(--blue); border-left: 2px solid var(--blue); background: #64f5e807; }
+    .density-details { margin-top: 18px; font-size: .875rem; }
+    .density-details summary { cursor: pointer; color: var(--muted); padding-block: .35rem; }
+    .density-matrix { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; font: 400 .875rem/1.6 var(--mono); padding: 12px; margin: 12px 0; border-inline: 2px solid var(--pink); text-align: center; }
+    .topic-map { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(120px, 1fr)); gap: 0; isolation: isolate; margin-top: 13px; }
+    .topic-edges { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; overflow: visible; }
+    .topic-edges line { stroke: #476079; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    .topic-edges line.active { stroke: var(--pink); stroke-width: 2; }
+    .lab-panel .topic-node { margin: 16px 9px; min-width: 0; padding: 12px 8px; background: #111b2a; font-family: var(--sans); line-height: 1.45; border: 1px solid #41536a; position: relative; }
+    .topic-node > span:first-child { display: block; font: 500 1rem/1.3 var(--display); }
+    .topic-node small { display: block; margin-top: 5px; font-size: .75rem; color: var(--muted); }
+    .topic-node .topic-count { display: block; margin-top: 9px; color: var(--pink); font: 400 .75rem/1.4 var(--mono); }
+    .lab-panel .topic-node[aria-pressed="true"] { border-color: var(--blue); background: #142a32; box-shadow: inset 0 -2px var(--blue); }
+    .topic-node[aria-pressed="true"] > span:first-child, .topic-node[aria-pressed="true"] .topic-count { color: var(--blue); }
+    .map-caption { font-size: .8125rem; color: var(--muted); margin-top: 9px; }
+    .map-results-heading { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 25px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .map-results-heading h4 { font: 500 1.1rem/1.4 var(--display); }
+    #map-all[aria-pressed="true"] { color: var(--blue); border-color: var(--blue); }
+    .map-description { color: var(--muted); font-size: .875rem; margin-top: 12px; min-height: 3em; }
+    .map-count { color: var(--pink); font: 400 .75rem/1.7 var(--mono); margin-block: 12px; }
+    .map-results-scroll { max-height: 31rem; overflow: auto; scrollbar-color: #4f627d #111b2a; scrollbar-width: thin; padding-right: 8px; }
+    .map-results { padding: 0; margin: 0; list-style: none; }
+    .map-results li { padding-block: 13px; border-top: 1px solid var(--line); }
+    .map-results a { display: block; color: var(--ink); font-size: .9375rem; line-height: 1.5; padding-block: 4px; }
+    .map-results a:hover { color: var(--blue); text-decoration: underline; }
+    .map-results small { display: block; color: var(--muted); font-size: .75rem; margin-top: 6px; }
+    .paper:target { border-left: 3px solid var(--pink); background: #191c30; scroll-margin-top: 2rem; }
+    .explore-fallback { color: var(--muted); padding: 20px; border: 1px solid var(--line); }
+    .explore-fallback a { color: var(--blue); text-decoration: underline; }
+    @media (max-width: 1050px) { .explore-grid { grid-template-columns: minmax(0, 1fr); } .lab-panel { padding: 28px; } .sphere-stage { max-width: 620px; margin-inline: auto; } .topic-map { max-width: 600px; margin-inline: auto; } .map-results-scroll { max-height: 25rem; } }
+    @media (max-width: 720px) { .explore-section { padding-block: 41px 46px; } .explore-heading { flex-direction: column; align-items: start; gap: 16px; } .lab-panel { padding: 18px; } .sphere-toolbar { align-items: start; } .bloch-readouts { gap: 10px; } .bloch-readouts output { font-size: 1.1rem; } .lab-panel .topic-node { margin-inline: 5px; } .topic-node > span:first-child { font-size: .9375rem; } .density-matrix { font-size: .8125rem; gap: 8px; padding-inline: 8px; } }
+    @media (max-width: 380px) { .lab-panel { padding: 14px; } .gate-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } .topic-node small { font-size: .75rem; } .map-results-heading { align-items: start; } .bloch-readouts output { font-size: 1rem; } }
   </style>
 </head>
 <body>
@@ -159,7 +229,7 @@
   <header class="site-header wrap">
     <a class="wordmark" href="#top" aria-label="Zhongxia Shang, home">ZS<span aria-hidden="true">.</span></a>
     <nav aria-label="Main navigation">
-      <a href="#about">About</a><a href="#news">News</a><a href="#papers">Papers</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#explore">Explore</a><a href="#news">News</a><a href="#papers">Papers</a><a href="#contact">Contact</a>
     </nav>
   </header>
   <main id="main">
@@ -185,6 +255,45 @@
       <div class="about-copy"><p>My name is Zhongxia Shang (or Zhong-Xia Shang used in publications). I am currently a postdoctoral researcher at <a href="https://qmath.ku.dk/" target="_blank" rel="noopener noreferrer">QMATH</a> at the <strong>University of Copenhagen</strong> hosted by <strong><a href="https://danielstilckfranca.eu/" target="_blank" rel="noopener noreferrer">Prof. Daniel Stilck França</a></strong>. Previously, I was an <a href="https://iq.hku.hk/" target="_blank" rel="noopener noreferrer">HKIQST</a> postdoctoral fellow affiliated with the <strong>University of Hong Kong (HKU)</strong>. My hosts were <strong><a href="https://scholar.google.com/citations?user=fkJk8H4AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Prof. Wang Yao</a></strong> and <strong><a href="https://qizhao-quantum.github.io/" target="_blank" rel="noopener noreferrer">Prof. Qi Zhao</a></strong>. I obtained my Ph.D. degree in Physics at <strong>University of Science and Technology of China (USTC)</strong> (2024). My advisor was <strong><a href="https://scholar.google.com/citations?user=0AJt_zEAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Prof. Chao-Yang Lu</a></strong>. I also obtained my B.S. degree in Physics at the School of Gifted Young, <strong>USTC</strong> (2019).</p><p class="research-note">I began my quantum journey on the experimental side of quantum computing, but later shifted my focus to the theoretical side, where I have been really enjoying designing new quantum algorithms and exploring quantum advantages. In my view, the current biggest bottleneck of quantum computing is the lack of applications. I hope to make quantum computing more useful and valuable by the day we finally create a universal fault-tolerant quantum computer!</p></div>
     </section>
 
+    <section id="explore" class="explore-section wrap" aria-labelledby="explore-title">
+      <div class="explore-heading"><div><p class="eyebrow section-number" aria-hidden="true">INTERACTIVE / EXPLORE</p><h2 id="explore-title">Quantum, hands on.</h2></div><p>Explore a qubit. Find the connections between my papers.</p></div>
+      <noscript><p class="explore-fallback">Enable JavaScript to use these interactive tools. You can still read every paper in the <a href="#papers">publications list</a>.</p></noscript>
+      <div class="explore-grid" id="interactive-tools" hidden>
+        <section class="lab-panel bloch-panel" aria-labelledby="bloch-title">
+          <div class="lab-panel-heading"><p class="eyebrow">01 / SINGLE QUBIT</p><h3 id="bloch-title">Bloch sphere</h3><p>Apply a gate or preview how dephasing changes a qubit.</p></div>
+          <div class="sphere-stage"><canvas id="bloch-canvas" width="600" height="420" tabindex="0" role="img" aria-label="Interactive Bloch sphere" aria-describedby="sphere-help">The current Bloch vector and probabilities are shown below.</canvas></div>
+          <div class="sphere-toolbar"><p id="sphere-help">Drag or use arrow keys to rotate the view.</p><button type="button" id="reset-view">Reset view</button></div>
+          <div class="bloch-readouts" aria-label="Qubit measurements">
+            <div><span>P(0)</span><output id="bloch-probability">50.0%</output></div>
+            <div><span>Purity</span><output id="bloch-purity">1.000</output></div>
+            <div><span>State</span><output id="bloch-kind">Pure</output></div>
+          </div>
+          <p class="bloch-vector">Bloch vector <output id="bloch-vector">(1.000, 0.000, 0.000)</output></p>
+          <fieldset class="lab-controls"><legend>Prepare a fresh state</legend><div class="control-row"><button type="button" data-state="zero" aria-label="Prepare zero state">|0⟩</button><button type="button" data-state="plus" aria-label="Prepare plus state">|+⟩</button><button type="button" data-state="plusi" aria-label="Prepare plus i state">|+i⟩</button></div></fieldset>
+          <fieldset class="lab-controls"><legend>Apply a quantum gate</legend><div class="control-row gate-row"><button type="button" data-gate="X" aria-label="Apply X gate">X <small>flip</small></button><button type="button" data-gate="H" aria-label="Apply Hadamard gate">H <small>Hadamard</small></button><button type="button" data-gate="S" aria-label="Apply S phase gate">S <small>phase</small></button><button type="button" data-gate="Ry" aria-label="Rotate about y by pi over four">R<sub>y</sub> <small>π/4</small></button></div></fieldset>
+          <div class="dephasing-control"><div class="range-heading"><label for="dephasing">Dephasing strength</label><output id="dephasing-value" for="dephasing">0%</output></div><input id="dephasing" type="range" min="0" max="100" step="1" value="0" aria-describedby="dephasing-help"><p id="dephasing-help">Preview dephasing. Applying a gate keeps the displayed noise and resets this slider for the next step.</p></div>
+          <p id="bloch-status" class="lab-status" role="status" aria-live="polite">Prepared |+⟩. The arrow reaches the surface for a pure state.</p>
+          <details class="density-details"><summary>Show the density matrix</summary><div class="density-matrix" aria-label="Density matrix"><span id="rho00">0.500</span><span id="rho01">0.500</span><span id="rho10">0.500</span><span id="rho11">0.500</span></div><p>ρ = ½(I + xX + yY + zZ). Dephasing shrinks x and y; z stays unchanged.</p></details>
+        </section>
+
+        <section class="lab-panel research-panel" aria-labelledby="map-title">
+          <div class="lab-panel-heading"><p class="eyebrow">02 / RESEARCH CONNECTIONS</p><h3 id="map-title">Research map</h3><p>Choose a topic to explore the papers behind it.</p></div>
+          <div class="topic-map" role="group" aria-label="Research topics">
+            <svg class="topic-edges" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="25" y1="25" x2="75" y2="25" data-edge="dissipation algorithms"/><line x1="75" y1="25" x2="25" y2="75" data-edge="algorithms information"/><line x1="75" y1="25" x2="75" y2="75" data-edge="algorithms experiments"/><line x1="25" y1="75" x2="75" y2="75" data-edge="information experiments"/></svg>
+            <button type="button" class="topic-node" data-topic="dissipation" aria-pressed="false"><span>Dissipation</span><small>Open systems</small><span class="topic-count"></span></button>
+            <button type="button" class="topic-node" data-topic="algorithms" aria-pressed="false"><span>Algorithms</span><small>Computation</small><span class="topic-count"></span></button>
+            <button type="button" class="topic-node" data-topic="information" aria-pressed="false"><span>Quantum information</span><small>Resources &amp; foundations</small><span class="topic-count"></span></button>
+            <button type="button" class="topic-node" data-topic="experiments" aria-pressed="false"><span>Experiments</span><small>Devices &amp; platforms</small><span class="topic-count"></span></button>
+          </div>
+          <p class="map-caption">Connections indicate papers spanning more than one topic.</p>
+          <div class="map-results-heading"><h4 id="map-selection">All research</h4><button type="button" id="map-all" aria-pressed="true">All papers</button></div>
+          <p id="map-description" class="map-description">Explore all papers, or select a topic above.</p>
+          <p id="map-count" class="map-count" role="status" aria-live="polite"></p>
+          <div class="map-results-scroll" tabindex="0" role="region" aria-label="Papers for the selected topic"><ul id="map-results" class="map-results"></ul></div>
+        </section>
+      </div>
+    </section>
+
     <section id="news" class="section-grid wrap" aria-labelledby="news-title">
       <div class="section-heading"><p class="eyebrow section-number" aria-hidden="true">02 / NEWS</p><h2 id="news-title">Research updates.</h2></div>
       <ol class="news-list">
@@ -206,7 +315,7 @@
       <div class="paper-group" id="publications">
         <h3>Journal publications &amp; conference talks</h3>
         <div class="paper-list">
-          <article class="paper">
+          <article class="paper" id="paper-2401.17022" data-topics="experiments">
             <div class="paper-main">
               <h4><a href="https://www.science.org/doi/abs/10.1126/science.ado3912" target="_blank" rel="noopener noreferrer">Realization of fractional quantum Hall state with interacting photons</a></h4>
               <p class="authors">C Wang, FM Liu, MC Chen, H Chen, XH Zhao, C Ying, <strong>ZX Shang</strong>, et al.</p>
@@ -214,7 +323,7 @@
             </div>
             <div class="paper-links"><a href="https://www.science.org/doi/abs/10.1126/science.ado3912" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2401.17022" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2509.09517" data-topics="dissipation algorithms">
             <div class="paper-main">
               <h4><a href="https://iopscience.iop.org/article/10.1088/1361-6633/ae6df7" target="_blank" rel="noopener noreferrer">Exponential Lindbladian fast forwarding and exponential amplification of certain Gibbs state properties</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, D An, CP Shao</p>
@@ -222,7 +331,7 @@
             </div>
             <div class="paper-links"><a href="https://iopscience.iop.org/article/10.1088/1361-6633/ae6df7" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2509.09517" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2405.07592" data-topics="information">
             <div class="paper-main">
               <h4><a href="https://journals.aps.org/prresearch/abstract/10.1103/kzyj-j3g8" target="_blank" rel="noopener noreferrer">Decoherence-free quantum error mitigation by density matrix vectorization</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, ZH Chen, CS Cheng</p>
@@ -230,7 +339,7 @@
             </div>
             <div class="paper-links"><a href="https://journals.aps.org/prresearch/abstract/10.1103/kzyj-j3g8" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2405.07592" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2510.06759" data-topics="dissipation algorithms">
             <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2510.06759" target="_blank" rel="noopener noreferrer">Fast-forwardable Lindbladians imply quantum phase estimation</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, N Guo, P Rebentrost, A Aspuru-Guzik, T Li, Q Zhao</p>
@@ -239,7 +348,7 @@
             </div>
             <div class="paper-links"><a href="https://arxiv.org/abs/2510.06759" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2505.09512" data-topics="information">
             <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2505.09512" target="_blank" rel="noopener noreferrer">Bra-ket entanglement, an indicator bridging entanglement, magic, and coherence</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, SY Chen, W Yu, G Chiribella, Q Zhao</p>
@@ -248,7 +357,7 @@
             </div>
             <div class="paper-links"><a href="https://arxiv.org/abs/2505.09512" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2403.16698" data-topics="algorithms">
             <div class="paper-main">
               <h4><a href="https://journals.aps.org/prxquantum/abstract/10.1103/gw1c-5b58" target="_blank" rel="noopener noreferrer">Boson sampling enhanced quantum chemistry</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, Y Zhang, HS Zhong, CC Yu, X Yuan, CY Lu, JW Pan, MC Chen</p>
@@ -256,7 +365,7 @@
             </div>
             <div class="paper-links"><a href="https://journals.aps.org/prxquantum/abstract/10.1103/gw1c-5b58" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2403.16698" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2410.19628" data-topics="dissipation algorithms">
             <div class="paper-main">
               <h4><a href="https://journals.aps.org/prl/abstract/10.1103/cvl9-97qg" target="_blank" rel="noopener noreferrer">Designing a Nearly Optimal Quantum Algorithm for Linear Differential Equations via Lindbladians</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, N Guo, D An, Q Zhao</p>
@@ -265,7 +374,7 @@
             </div>
             <div class="paper-links"><a href="https://journals.aps.org/prl/abstract/10.1103/cvl9-97qg" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2410.19628" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2403.03478" data-topics="dissipation algorithms">
             <div class="paper-main">
               <h4><a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.109.062608" target="_blank" rel="noopener noreferrer">Hermitian-preserving ansatz and variational open quantum eigensolver</a></h4>
               <p class="authors"><strong>ZX Shang</strong></p>
@@ -273,7 +382,7 @@
             </div>
             <div class="paper-links"><a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.109.062608" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2403.03478" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2401.13946" data-topics="dissipation algorithms">
             <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2401.13946" target="_blank" rel="noopener noreferrer">A polynomial-time dissipation-based quantum algorithm for solving the ground states of a class of classically hard Hamiltonians</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, ZH Chen, CY Lu, JW Pan, MC Chen</p>
@@ -282,7 +391,7 @@
             </div>
             <div class="paper-links"><a href="https://arxiv.org/abs/2401.13946" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2112.07881" data-topics="algorithms">
             <div class="paper-main">
               <h4><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.060406" target="_blank" rel="noopener noreferrer">Schrödinger-Heisenberg variational quantum algorithms</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, MC Chen, X Yuan, CY Lu, JW Pan</p>
@@ -290,7 +399,7 @@
             </div>
             <div class="paper-links"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.060406" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2112.07881" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2109.00994" data-topics="algorithms experiments">
             <div class="paper-main">
               <h4><a href="https://www.sciencedirect.com/science/article/abs/pii/S2095927323004139" target="_blank" rel="noopener noreferrer">Quantum computer-aided design for advanced superconducting qubit: Plasmonium</a></h4>
               <p class="authors">FM Liu, C Wang, MC Chen, ... <strong>ZX Shang</strong>, et al.</p>
@@ -298,7 +407,7 @@
             </div>
             <div class="paper-links"><a href="https://www.sciencedirect.com/science/article/abs/pii/S2095927323004139" target="_blank" rel="noopener noreferrer">Journal<span aria-hidden="true">↗</span></a> <a href="https://arxiv.org/abs/2109.00994" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2103.08123" data-topics="information experiments">
             <div class="paper-main">
               <h4><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.128.040403" target="_blank" rel="noopener noreferrer">Ruling out real-valued standard formalism of quantum theory</a></h4>
               <p class="authors">MC Chen, C Wang, FM Liu, JW Wang, C Ying, <strong>ZX Shang</strong>, et al.</p>
@@ -311,7 +420,7 @@
       <div class="paper-group" id="preprints">
         <h3>Preprints</h3>
         <div class="paper-list">
-          <article class="paper">
+          <article class="paper" id="paper-2609.12284" data-topics="dissipation algorithms">
             <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2609.12284" target="_blank" rel="noopener noreferrer">A Simple Quantum Linear-System Solver via Dissipation</a></h4>
               <p class="authors"><strong>ZX Shang</strong></p>
@@ -319,7 +428,7 @@
             </div>
             <div class="paper-links"><a href="https://arxiv.org/abs/2609.12284" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2604.18533" data-topics="dissipation algorithms">
             <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2604.18533" target="_blank" rel="noopener noreferrer">Hamiltonian dynamics from pure dissipation</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, D Franca</p>
@@ -327,7 +436,7 @@
             </div>
             <div class="paper-links"><a href="https://arxiv.org/abs/2604.18533" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2412.03109" data-topics="algorithms">
             <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2412.03109" target="_blank" rel="noopener noreferrer">Pauli quantum computing: <em>I</em> as |0⟩ and <em>X</em> as |1⟩</a></h4>
               <p class="authors"><strong>ZX Shang</strong></p>
@@ -335,7 +444,7 @@
             </div>
             <div class="paper-links"><a href="https://arxiv.org/abs/2412.03109" target="_blank" rel="noopener noreferrer">arXiv<span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="paper">
+          <article class="paper" id="paper-2408.13721" data-topics="algorithms information">
             <div class="paper-main">
               <h4><a href="https://arxiv.org/abs/2408.13721" target="_blank" rel="noopener noreferrer">Entanglement-induced exponential advantage in amplitude estimation via state matrixization</a></h4>
               <p class="authors"><strong>ZX Shang</strong>, Q Zhao</p>
@@ -366,6 +475,259 @@
     <p class="codex-credit"><span class="status-dot" aria-hidden="true"></span>Auto-managed by Codex</p>
     <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </footer>
+  <script>
+(() => {
+  'use strict';
+const BlochMath = Object.freeze({
+  gate(vector, name) {
+    const [x, y, z] = vector;
+    const c = Math.SQRT1_2;
+    if (name === 'X') return [x, -y, -z];
+    if (name === 'H') return [z, -y, x];
+    if (name === 'S') return [-y, x, z];
+    if (name === 'Ry') return [c * (x + z), y, c * (z - x)];
+    throw new Error('Unknown gate');
+  },
+  dephase(vector, strength) {
+    return [vector[0] * (1 - strength), vector[1] * (1 - strength), vector[2]];
+  },
+  metrics(vector) {
+    const [x, y, z] = vector;
+    return {
+      p0: (1 + z) / 2,
+      purity: (1 + x * x + y * y + z * z) / 2,
+      density: [[[(1 + z) / 2, 0], [x / 2, -y / 2]], [[x / 2, y / 2], [(1 - z) / 2, 0]]]
+    };
+  }
+});
+
+  const toolsPanel = document.getElementById('interactive-tools');
+  if (!toolsPanel) return;
+  toolsPanel.hidden = false;
+
+  const canvas = document.getElementById('bloch-canvas');
+  const context = canvas.getContext('2d');
+  const slider = document.getElementById('dephasing');
+  const status = document.getElementById('bloch-status');
+  const presets = { zero: [0, 0, 1], plus: [1, 0, 0], plusi: [0, 1, 0] };
+  const presetLabels = { zero: '|0⟩', plus: '|+⟩', plusi: '|+i⟩' };
+  let base = [...presets.plus];
+  let strength = 0;
+  let azimuth = -0.65;
+  let elevation = 0.38;
+  let size = { width: 0, height: 0, ratio: 1 };
+  let frame = 0;
+  let pointer = null;
+
+  const clean = value => Math.abs(value) < 0.0005 ? 0 : value;
+  const fixed = value => clean(value).toFixed(3);
+  const displayed = () => BlochMath.dephase(base, strength);
+  function complex([real, imaginary]) {
+    const a = clean(real), b = clean(imaginary);
+    if (!b) return fixed(a);
+    if (!a) return (b < 0 ? '−' : '') + fixed(Math.abs(b)) + 'i';
+    return fixed(a) + (b < 0 ? ' − ' : ' + ') + fixed(Math.abs(b)) + 'i';
+  }
+
+  function project([x, y, z], radius, cx, cy) {
+    const horizontal = Math.cos(azimuth) * x - Math.sin(azimuth) * y;
+    const forward = Math.sin(azimuth) * x + Math.cos(azimuth) * y;
+    const vertical = Math.cos(elevation) * z - Math.sin(elevation) * forward;
+    const depth = Math.sin(elevation) * z + Math.cos(elevation) * forward;
+    return { x: cx + radius * horizontal, y: cy - radius * vertical, depth };
+  }
+
+  function draw() {
+    frame = 0;
+    if (!context || !size.width) return;
+    const { width, height, ratio } = size;
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    context.clearRect(0, 0, width, height);
+    const cx = width / 2, cy = height / 2, radius = Math.min(width * 0.32, height * 0.37);
+    const projection = point => project(point, radius, cx, cy);
+    const glow = context.createRadialGradient(cx - radius * .3, cy - radius * .3, 0, cx, cy, radius);
+    glow.addColorStop(0, '#112b35'); glow.addColorStop(1, '#0b1626');
+    context.beginPath(); context.arc(cx, cy, radius, 0, Math.PI * 2); context.fillStyle = glow; context.fill();
+    const rings = [];
+    for (const z of [-Math.SQRT1_2, 0, Math.SQRT1_2]) {
+      const r = Math.sqrt(1 - z * z);
+      rings.push(Array.from({ length: 97 }, (_, index) => {
+        const t = index / 96 * Math.PI * 2;
+        return projection([r * Math.cos(t), r * Math.sin(t), z]);
+      }));
+    }
+    for (const phi of [0, Math.PI / 4, Math.PI / 2, 3 * Math.PI / 4]) {
+      rings.push(Array.from({ length: 97 }, (_, index) => {
+        const t = index / 96 * Math.PI * 2;
+        return projection([Math.cos(t) * Math.cos(phi), Math.cos(t) * Math.sin(phi), Math.sin(t)]);
+      }));
+    }
+    for (const front of [false, true]) {
+      context.strokeStyle = front ? '#385e70' : '#203343';
+      context.lineWidth = 1; context.setLineDash(front ? [] : [2, 4]);
+      context.beginPath();
+      for (const ring of rings) for (let i = 1; i < ring.length; i++) {
+        const a = ring[i - 1], b = ring[i];
+        if (((a.depth + b.depth) >= 0) !== front) continue;
+        context.moveTo(a.x, a.y); context.lineTo(b.x, b.y);
+      }
+      context.stroke();
+    }
+    context.setLineDash([]);
+    context.beginPath(); context.arc(cx, cy, radius, 0, Math.PI * 2); context.strokeStyle = '#589aab'; context.lineWidth = 1; context.stroke();
+    for (const axis of [[1, 0, 0], [0, 1, 0], [0, 0, 1]]) {
+      const a = projection(axis.map(n => -.95 * n));
+      const b = projection(axis.map(n => 1.15 * n));
+      context.beginPath(); context.moveTo(a.x, a.y); context.lineTo(b.x, b.y);
+      context.strokeStyle = '#61788c'; context.lineWidth = 1; context.stroke();
+    }
+    context.font = '12px "IBM Plex Mono", monospace'; context.textAlign = 'center'; context.textBaseline = 'middle';
+    for (const [vector, label] of [[[1.3, 0, 0], 'x'], [[0, 1.3, 0], 'y'], [[0, 0, 1.28], 'z · |0⟩'], [[0, 0, -1.25], '|1⟩']]) {
+      const point = projection(vector); context.fillStyle = '#bdcede'; context.fillText(label, point.x, point.y);
+    }
+    const vector = displayed();
+    const tip = projection(vector);
+    const length = Math.hypot(...vector);
+    const projectedLength = Math.hypot(tip.x - cx, tip.y - cy);
+    context.strokeStyle = '#64f5e8'; context.fillStyle = '#64f5e8'; context.lineWidth = 3;
+    context.beginPath(); context.moveTo(cx, cy); context.lineTo(tip.x, tip.y); context.stroke();
+    if (projectedLength > 12) {
+      const angle = Math.atan2(tip.y - cy, tip.x - cx), head = 9;
+      context.beginPath(); context.moveTo(tip.x, tip.y);
+      context.lineTo(tip.x - head * Math.cos(angle - .45), tip.y - head * Math.sin(angle - .45));
+      context.lineTo(tip.x - head * Math.cos(angle + .45), tip.y - head * Math.sin(angle + .45));
+      context.closePath(); context.fill();
+    }
+    context.beginPath(); context.arc(tip.x, tip.y, 4.5, 0, 2 * Math.PI); context.fillStyle = '#ff70ca'; context.fill();
+    context.beginPath(); context.arc(cx, cy, 2.3, 0, 2 * Math.PI); context.fillStyle = '#edf8ff'; context.fill();
+    if (length < 0.00001) { context.fillStyle = '#ff70ca'; context.fillText('I/2', cx + 22, cy - 16); }
+  }
+
+  function scheduleDraw() { if (!frame) frame = requestAnimationFrame(draw); }
+  function resize() {
+    const width = canvas.clientWidth;
+    if (!width) return;
+    const height = width * .7, ratio = Math.min(window.devicePixelRatio || 1, 2);
+    size = { width, height, ratio };
+    canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
+    scheduleDraw();
+  }
+
+  function update(message) {
+    const vector = displayed();
+    const metrics = BlochMath.metrics(vector);
+    const kind = metrics.purity > .999999 ? 'Pure' : metrics.purity < .500001 ? 'Max. mixed' : 'Mixed';
+    document.getElementById('bloch-probability').textContent = (metrics.p0 * 100).toFixed(1) + '%';
+    document.getElementById('bloch-purity').textContent = metrics.purity.toFixed(3);
+    document.getElementById('bloch-kind').textContent = kind;
+    document.getElementById('bloch-vector').textContent = '(' + vector.map(fixed).join(', ') + ')';
+    document.getElementById('dephasing-value').textContent = Math.round(strength * 100) + '%';
+    slider.value = String(Math.round(strength * 100));
+    for (let row = 0; row < 2; row++) for (let column = 0; column < 2; column++) {
+      document.getElementById('rho' + row + column).textContent = complex(metrics.density[row][column]);
+    }
+    canvas.setAttribute('aria-label', 'Bloch sphere. Vector ' + vector.map(fixed).join(', ') + '. ' + kind + ' state. Probability of zero ' + (metrics.p0 * 100).toFixed(1) + ' percent.');
+    if (message) status.textContent = message;
+    scheduleDraw();
+  }
+
+  for (const button of document.querySelectorAll('[data-state]')) button.addEventListener('click', () => {
+    base = [...presets[button.dataset.state]]; strength = 0;
+    update('Prepared ' + presetLabels[button.dataset.state] + '. The arrow reaches the surface for a pure state.');
+  });
+  for (const button of document.querySelectorAll('[data-gate]')) button.addEventListener('click', () => {
+    const name = button.dataset.gate, hadNoise = strength > 0;
+    base = BlochMath.gate(displayed(), name); strength = 0;
+    update((name === 'Ry' ? 'Rᵧ(π/4)' : name) + ' applied.' + (hadNoise ? ' The displayed noise was kept; dephasing preview reset to 0%.' : ' Unitary gates preserve purity.'));
+  });
+  slider.addEventListener('input', () => { strength = Number(slider.value) / 100; update(); });
+  slider.addEventListener('change', () => {
+    const purity = BlochMath.metrics(displayed()).purity;
+    status.textContent = 'Dephasing preview: ' + Math.round(strength * 100) + '%. Purity ' + purity.toFixed(3) + '. The z component is unchanged.';
+  });
+
+  canvas.addEventListener('pointerdown', event => {
+    if (pointer || (event.pointerType === 'mouse' && event.button !== 0)) return;
+    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    canvas.setPointerCapture(event.pointerId); canvas.classList.add('dragging');
+  });
+  canvas.addEventListener('pointermove', event => {
+    if (!pointer || pointer.id !== event.pointerId) return;
+    azimuth += (event.clientX - pointer.x) * .008;
+    elevation = Math.max(-1.3, Math.min(1.3, elevation + (event.clientY - pointer.y) * .008));
+    pointer.x = event.clientX; pointer.y = event.clientY; scheduleDraw();
+  });
+  const endPointer = () => { pointer = null; canvas.classList.remove('dragging'); };
+  canvas.addEventListener('pointerup', endPointer); canvas.addEventListener('pointercancel', endPointer); canvas.addEventListener('lostpointercapture', endPointer);
+  canvas.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === 'ArrowLeft') azimuth -= .12;
+    if (event.key === 'ArrowRight') azimuth += .12;
+    if (event.key === 'ArrowUp') elevation -= .12;
+    if (event.key === 'ArrowDown') elevation += .12;
+    elevation = Math.max(-1.3, Math.min(1.3, elevation)); scheduleDraw();
+  });
+  document.getElementById('reset-view').addEventListener('click', () => { azimuth = -.65; elevation = .38; scheduleDraw(); });
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(resize).observe(canvas);
+  window.addEventListener('resize', resize);
+  if (document.fonts) document.fonts.ready.then(scheduleDraw);
+  resize(); update();
+
+  const topics = {
+    dissipation: { label: 'Dissipation & open systems', description: 'Lindbladian dynamics, fast forwarding, and computation through dissipation.' },
+    algorithms: { label: 'Algorithms & computation', description: 'Quantum solvers, simulation, estimation, variational methods, and computational models.' },
+    information: { label: 'Quantum information', description: 'Entanglement, coherence, error mitigation, and foundations of quantum theory.' },
+    experiments: { label: 'Experiments & devices', description: 'Interacting photons, superconducting qubits, and experimental tests of quantum theory.' }
+  };
+  const paperElements = Array.from(document.querySelectorAll('#papers article.paper'));
+  const records = paperElements.map((paper, index) => {
+    if (!paper.id) {
+      const arxivLink = paper.querySelector('a[href*="arxiv.org/abs/"]');
+      const identifier = arxivLink && arxivLink.getAttribute('href').match(/arxiv\.org\/abs\/([0-9.]+)/);
+      paper.id = identifier ? 'paper-' + identifier[1] : 'research-paper-' + (index + 1);
+    }
+    return {
+      id: paper.id,
+      title: paper.querySelector('h4').textContent.trim(),
+      venue: paper.querySelector('.venue').textContent.trim(),
+      topics: (paper.dataset.topics || '').split(/\s+/).filter(Boolean)
+    };
+  });
+  const topicButtons = Array.from(document.querySelectorAll('[data-topic]'));
+  const allButton = document.getElementById('map-all');
+  const results = document.getElementById('map-results');
+  for (const button of topicButtons) {
+    const count = records.filter(record => record.topics.includes(button.dataset.topic)).length;
+    button.querySelector('.topic-count').textContent = count + ' papers';
+    button.addEventListener('click', () => selectTopic(button.dataset.topic));
+  }
+  function selectTopic(key) {
+    const selection = key ? topics[key] : null;
+    const matching = key ? records.filter(record => record.topics.includes(key)) : records;
+    for (const button of topicButtons) button.setAttribute('aria-pressed', String(button.dataset.topic === key));
+    allButton.setAttribute('aria-pressed', String(!key));
+    for (const line of document.querySelectorAll('[data-edge]')) line.classList.toggle('active', !!key && line.dataset.edge.split(' ').includes(key));
+    document.getElementById('map-selection').textContent = selection ? selection.label : 'All research';
+    document.getElementById('map-description').textContent = selection ? selection.description : 'Explore all papers, or select a topic above.';
+    document.getElementById('map-count').textContent = matching.length + ' matching ' + (matching.length === 1 ? 'paper' : 'papers') + ' · select a title to jump to its full entry';
+    results.replaceChildren();
+    for (const record of matching) {
+      const item = document.createElement('li'), link = document.createElement('a'), venue = document.createElement('small');
+      link.href = '#' + record.id; link.textContent = record.title;
+      venue.textContent = record.venue; item.append(link, venue); results.append(item);
+      link.addEventListener('click', () => {
+        const article = document.getElementById(record.id);
+        article.setAttribute('tabindex', '-1'); article.focus({ preventScroll: true });
+      });
+    }
+    document.querySelector('.map-results-scroll').scrollTop = 0;
+  }
+  allButton.addEventListener('click', () => selectTopic(null));
+  selectTopic('dissipation');
+
+})();
+  </script>
 </body>
 </html>
 
