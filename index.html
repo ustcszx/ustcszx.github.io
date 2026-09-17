@@ -203,8 +203,11 @@
     /* AI-generated artwork; interaction is decorative and never captures input. */
     body { background-image: none; isolation: isolate; }
     .quantum-background { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; background: #050a12; contain: strict; }
-    .quantum-art { position: absolute; inset: -32px; }
-    .quantum-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: .84; }
+    .quantum-art { position: absolute; inset: -32px; opacity: .84; }
+    .quantum-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .knight-reaction { position: absolute; overflow: hidden; pointer-events: none; opacity: 0; transform-origin: 50% 80%; mask-image: radial-gradient(ellipse at center, #000 66%, transparent 98%); -webkit-mask-image: radial-gradient(ellipse at center, #000 66%, transparent 98%); }
+    .quantum-art .knight-reaction img { position: absolute; max-width: none; object-fit: fill; object-position: 0 0; }
+    @media (prefers-reduced-motion: reduce), (hover: none) { .knight-reaction { display: none; } }
     .quantum-veil { position: absolute; inset: 0; background: linear-gradient(90deg, #080b1259, #080b12a8 27%, #080b12b3 67%, #080b1266), linear-gradient(0deg, #080b1240, transparent 60%); }
     .quantum-light { position: absolute; left: 50%; top: 50%; width: min(720px, 100vw); aspect-ratio: 1; margin-left: max(-360px, -50vw); margin-top: max(-360px, -50vw); background: radial-gradient(circle, #64f5e813, #a36cfe08 35%, transparent 68%); opacity: 0; }
     .quantum-background[data-active="true"] .quantum-art { will-change: transform; }
@@ -217,7 +220,7 @@
     .background-toggle[aria-pressed="true"] .motion-state { color: var(--blue); }
     .background-toggle:disabled { cursor: default; }
     @media (max-aspect-ratio: 4/3) { .quantum-art img { object-position: 72% center; } }
-    @media (max-aspect-ratio: 1/1) { .quantum-art img { object-position: 72% center; opacity: .65; } }
+    @media (max-aspect-ratio: 1/1) { .quantum-art img { object-position: 72% center; } .quantum-art { opacity: .65; } }
     @media (prefers-reduced-motion: reduce), (hover: none) {
       .quantum-art { transform: none !important; }
       .quantum-light { display: none; }
@@ -227,7 +230,7 @@
 </head>
 <body>
   <div class="quantum-background" id="quantum-background" aria-hidden="true">
-    <div class="quantum-art"><img src="hollow-quantum-background.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low"></div>
+    <div class="quantum-art"><img src="hollow-quantum-background.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low"><div class="knight-reaction"><img src="knight-looking.webp" alt="" width="1672" height="941" decoding="async" fetchpriority="low"></div></div>
     <div class="quantum-veil"></div>
     <div class="quantum-light"></div>
   </div>
@@ -538,19 +541,56 @@
   const scene = document.getElementById('quantum-background');
   const art = scene.querySelector('.quantum-art');
   const light = scene.querySelector('.quantum-light');
+  const reaction = scene.querySelector('.knight-reaction');
+  const lookImage = reaction.querySelector('img');
   const toggle = document.getElementById('background-toggle');
   const status = toggle.querySelector('.motion-state');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mouse = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const tall = window.matchMedia('(max-aspect-ratio: 4/3)');
   const storageKey = 'quantum-background-motion';
+  const source = { width: 1672, height: 941, headX: 1344, headY: 667 };
+  const patch = { x: 1306, y: 621, width: 76, height: 87 };
+  const pointer = { x: 0, y: 0, present: false };
+  const current = { x: 0, y: 0 }, target = { x: 0, y: 0 };
   let wanted = true;
   try { wanted = localStorage.getItem(storageKey) !== 'off'; } catch (_) { /* Storage is optional. */ }
-  let active = false, frame = 0, previousTime = 0;
-  const current = { x: 0, y: 0 }, target = { x: 0, y: 0 };
+  let active = false, frame = 0, previousTime = 0, look = 0;
+  let ready = lookImage.complete && lookImage.naturalWidth > 0;
+  let geometry = { x: 0, y: 0, radius: 110, scale: 1 };
 
+  function measure() {
+    const width = art.clientWidth, height = art.clientHeight;
+    const scale = Math.max(width / source.width, height / source.height);
+    const x = (width - source.width * scale) * (tall.matches ? .72 : .5);
+    const y = (height - source.height * scale) * .5;
+    geometry = {
+      x: art.offsetLeft + x + source.headX * scale,
+      y: art.offsetTop + y + source.headY * scale,
+      radius: Math.max(90, Math.min(155, 115 * scale)), scale
+    };
+    Object.assign(reaction.style, {
+      left: (x + patch.x * scale) + 'px', top: (y + patch.y * scale) + 'px',
+      width: (patch.width * scale) + 'px', height: (patch.height * scale) + 'px'
+    });
+    Object.assign(lookImage.style, {
+      width: (source.width * scale) + 'px', height: (source.height * scale) + 'px',
+      left: (-patch.x * scale) + 'px', top: (-patch.y * scale) + 'px'
+    });
+  }
+  function attention() {
+    if (!active || !ready || !pointer.present) return 0;
+    const x = geometry.x - current.x * 20, y = geometry.y - current.y * 14;
+    if (x < 0 || y < 0 || x > innerWidth || y > innerHeight) return 0;
+    const distance = Math.hypot(pointer.x - x, pointer.y - y);
+    const t = Math.max(0, Math.min(1, (distance / geometry.radius - .45) / .55));
+    return 1 - t * t * (3 - 2 * t);
+  }
   function paint() {
     art.style.transform = `translate3d(${(-current.x * 20).toFixed(2)}px, ${(-current.y * 14).toFixed(2)}px, 0)`;
     light.style.transform = `translate3d(${(current.x * innerWidth * .35).toFixed(2)}px, ${(current.y * innerHeight * .35).toFixed(2)}px, 0)`;
+    reaction.style.opacity = look.toFixed(4);
+    reaction.style.transform = `rotate(${(-2.5 * look).toFixed(2)}deg)`;
   }
   function step(time) {
     const elapsed = previousTime ? Math.min(time - previousTime, 64) : 16;
@@ -558,18 +598,22 @@
     const blend = 1 - Math.exp(-elapsed / 110);
     current.x += (target.x - current.x) * blend;
     current.y += (target.y - current.y) * blend;
-    const settled = Math.abs(target.x - current.x) + Math.abs(target.y - current.y) < .001;
-    if (settled) { current.x = target.x; current.y = target.y; }
+    const desiredLook = attention();
+    look += (desiredLook - look) * (1 - Math.exp(-elapsed / 130));
+    const settled = Math.abs(target.x - current.x) + Math.abs(target.y - current.y) + Math.abs(desiredLook - look) < .001;
+    if (settled) { current.x = target.x; current.y = target.y; look = desiredLook; }
     paint();
     frame = settled ? 0 : requestAnimationFrame(step);
     if (settled) previousTime = 0;
   }
   function schedule() { if (active && !frame) frame = requestAnimationFrame(step); }
-  function center() { target.x = 0; target.y = 0; schedule(); }
+  function center() { pointer.present = false; target.x = 0; target.y = 0; schedule(); }
   function reset() {
-    cancelAnimationFrame(frame); frame = 0; previousTime = 0;
+    cancelAnimationFrame(frame); frame = 0; previousTime = 0; look = 0;
+    pointer.present = false;
     current.x = current.y = target.x = target.y = 0;
     art.style.removeProperty('transform'); light.style.removeProperty('transform');
+    reaction.style.opacity = '0'; reaction.style.removeProperty('transform');
   }
   function sync() {
     const allowed = !reduced.matches && mouse.matches;
@@ -579,29 +623,35 @@
     toggle.disabled = !allowed;
     toggle.setAttribute('aria-pressed', String(enabled));
     status.textContent = enabled ? 'On' : 'Off';
-    toggle.title = reduced.matches ? 'Motion is off to respect your reduced-motion setting.' : !mouse.matches ? 'The artwork stays still on touch devices.' : 'Toggle gentle cursor-responsive background motion.';
+    toggle.title = reduced.matches ? 'Motion is off to respect your reduced-motion setting.' : !mouse.matches ? 'The artwork stays still on touch devices.' : 'Toggle background movement and the Knight’s head turn.';
     reset();
+  }
+  function trackPointer(event) {
+    if (!active || event.pointerType === 'touch' || event.buttons) return;
+    pointer.x = event.clientX; pointer.y = event.clientY; pointer.present = true;
+    target.x = Math.max(-1, Math.min(1, event.clientX / innerWidth * 2 - 1));
+    target.y = Math.max(-1, Math.min(1, event.clientY / innerHeight * 2 - 1));
+    schedule();
   }
   toggle.addEventListener('click', () => {
     wanted = !wanted;
     try { localStorage.setItem(storageKey, wanted ? 'on' : 'off'); } catch (_) { /* Storage is optional. */ }
     sync();
   });
-  document.addEventListener('pointermove', event => {
-    if (!active || event.pointerType === 'touch' || event.buttons) return;
-    target.x = Math.max(-1, Math.min(1, event.clientX / innerWidth * 2 - 1));
-    target.y = Math.max(-1, Math.min(1, event.clientY / innerHeight * 2 - 1));
-    schedule();
-  }, { passive: true });
+  document.addEventListener('pointermove', trackPointer, { passive: true });
+  document.addEventListener('pointerup', trackPointer, { passive: true });
+  document.addEventListener('pointercancel', center, { passive: true });
   document.documentElement.addEventListener('pointerleave', center);
   document.addEventListener('pointerdown', center, { passive: true });
   window.addEventListener('blur', center);
-  window.addEventListener('resize', reset, { passive: true });
+  window.addEventListener('resize', () => { reset(); measure(); }, { passive: true });
   document.addEventListener('visibilitychange', sync);
   reduced.addEventListener('change', sync);
   mouse.addEventListener('change', sync);
+  lookImage.addEventListener('load', () => { ready = true; schedule(); });
+  lookImage.addEventListener('error', () => { ready = false; schedule(); });
   toggle.hidden = false;
-  sync();
+  measure(); sync();
 })();
 
   </script>
